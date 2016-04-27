@@ -21,6 +21,7 @@ namespace WarehouseSentinel.Viwers.Clients
     /// </summary>
     public partial class AfegirClientWindow : Window
     {
+        //Prova de commentari
         private client client;
         private AfegirClientWindowController controller;
         modeControllerClient mode;

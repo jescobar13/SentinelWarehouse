@@ -25,6 +25,7 @@ namespace WarehouseSentinel.Viwers.Clients
         private client client;
         private AfegirClientWindowController controller;
         modeControllerClient mode;
+        private SentinelDBEntities context;
 
         public AfegirClientWindow(client c, modeControllerClient mode, SentinelDBEntities context)
         {
@@ -32,6 +33,7 @@ namespace WarehouseSentinel.Viwers.Clients
             controller = new AfegirClientWindowController(context);
             this.client = c;
             this.mode = mode;
+            this.context = context;
         }
 
         private void afegirClientWindow_Loaded(object sender, RoutedEventArgs e)
@@ -55,6 +57,11 @@ namespace WarehouseSentinel.Viwers.Clients
         }
 
         private void listView_contactes_Loaded(object sender, RoutedEventArgs e)
+        {
+            actualitzaLlistaContactes();
+        }
+
+        private void actualitzaLlistaContactes()
         {
             listView_contactes.ItemsSource = null;
             listView_contactes.ItemsSource = controller.donemContactes(client);
@@ -96,6 +103,13 @@ namespace WarehouseSentinel.Viwers.Clients
             string retorna = controller.afegeix(client);
 
             MessageBox.Show(retorna, "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void btn_afegirContacte_Click(object sender, RoutedEventArgs e)
+        {
+            ContacteWindow contacteWindow = new ContacteWindow(context, client, new contacte(), modeControllerContacte.AFEGIR);
+            contacteWindow.ShowDialog();
+            actualitzaLlistaContactes();
         }
     }
 }

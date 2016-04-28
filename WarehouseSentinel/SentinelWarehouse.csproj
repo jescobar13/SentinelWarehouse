@@ -66,6 +66,7 @@
     <Compile Include="Controllers\AfegirClientWindowController.cs" />
     <Compile Include="Controllers\ClientsWindowController.cs" />
     <Compile Include="Controllers\ComandesWindowController.cs" />
+    <Compile Include="Controllers\ContacteWindowController.cs" />
     <Compile Include="Models\albara.cs">
       <DependentUpon>SentinelDB.tt</DependentUpon>
     </Compile>

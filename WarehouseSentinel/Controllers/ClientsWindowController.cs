@@ -107,7 +107,8 @@ namespace WarehouseSentinel.Controllers
                 tClient.modify(c);
                 return "El client " + c.nom + @" s'ha deshabilitat correctament.
 Recorda que pots visualitzar-lo canviant el filtre";
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return "El client " + c.nom + " no s'ha pogut deshabilitat.";
             }

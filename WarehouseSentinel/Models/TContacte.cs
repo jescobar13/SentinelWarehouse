@@ -15,7 +15,22 @@ namespace WarehouseSentinel.Models
             this.context = context;
         }
 
+        internal void add(contacte contacte)
+        {
+            context.contacte.Add(contacte);
+            context.SaveChanges();
+        }
 
+        internal void modify(contacte c)
+        {
+            context.SaveChanges();
+        }
+
+        internal void remove(contacte c)
+        {
+            context.contacte.Remove(c);
+            context.SaveChanges();
+        }
 
         public List<contacte> getByClient(client c)
         {

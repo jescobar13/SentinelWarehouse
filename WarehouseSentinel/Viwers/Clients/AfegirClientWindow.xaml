@@ -59,7 +59,7 @@
                 </ListView>
 
                 <StackPanel Margin="10" Grid.Column="1">
-                    <Button Content="Afegir" MaxWidth="150" MaxHeight="35"/>
+                    <Button x:Name="btn_afegirContacte" Content="Afegir" MaxWidth="150" MaxHeight="35" Click="btn_afegirContacte_Click"/>
                     <Button Content="Modificar" Margin="0,5" MaxWidth="150" MaxHeight="35"/>
                     <Button Content="Eliminar" MaxWidth="150" MaxHeight="35"/>
                 </StackPanel>

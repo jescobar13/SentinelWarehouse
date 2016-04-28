@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WarehouseSentinel.Controllers.Producte;
+using WarehouseSentinel.Viwers.Producte;
+using WarehouseSentinel.Models;
 
 namespace WarehouseSentinel.Viwers.Producta
 {
@@ -41,7 +43,16 @@ namespace WarehouseSentinel.Viwers.Producta
 
         private void btn_AfegirProducte_Click(object sender, RoutedEventArgs e)
         {
+            AfegirProducteWindow afegirProducteWindow = new AfegirProducteWindow(
+                controller.getBaseContext(), new producte());
 
+            afegirProducteWindow.ShowDialog();
+            actualitzaProductes();
+        }
+
+        private void menuItem_tencarProductes_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -54,6 +54,17 @@ namespace WarehouseSentinel.Viwers.Clients
                 radioButton_estatDeshabilitat.IsChecked = true;
             else
                 radioButton_estatActiu.IsChecked = true;
+
+            switch (mode)
+            {
+                case modeControllerClient.afegir:
+                    btn_AfegirClient.Visibility = Visibility.Hidden;
+                    break;
+
+                case modeControllerClient.modificar:
+                    btn_AplicarCanvisClient.Visibility = Visibility.Hidden;
+                    break;
+            }
         }
 
         private void listView_contactes_Loaded(object sender, RoutedEventArgs e)

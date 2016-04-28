@@ -123,6 +123,33 @@ namespace WarehouseSentinel.Viwers.Clients
                 contacteWindow.ShowDialog();
                 actualitzaLlistaContactes();
             }
+            else
+            {
+                MessageBox.Show("Selecciona un contacte.", "Alerta", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btn_eliminarContacte_Click(object sender, RoutedEventArgs e)
+        {
+            if(listView_contactes.SelectedItems.Count == 1)
+            {
+                string retorna = controller.eliminaContacte(listView_contactes.SelectedItem as contacte);
+
+                MessageBox.Show(retorna, "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if(listView_contactes.SelectedItems.Count > 1)
+            {
+                foreach(contacte c in listView_contactes.SelectedItems)
+                {
+                    controller.eliminaContacte(c);
+                }
+                MessageBox.Show("S'ha afectuat l'accio correctament", "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("S'ha de seleccionar minim un contacte.", "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            actualitzaLlistaContactes();
         }
     }
 }

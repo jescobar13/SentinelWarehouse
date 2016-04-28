@@ -55,5 +55,17 @@ namespace WarehouseSentinel.Controllers
             return tContacte.getByClient(client);
         }
 
+        internal string eliminaContacte(contacte contacte)
+        {
+            try
+            {
+                tContacte.remove(contacte);
+                return "El contacte s'ha eliminat correctament.";
+            }
+            catch (Exception ex)
+            {
+                return "El contacte no s'ha pogut eliminar.";
+            }
+        }
     }
 }

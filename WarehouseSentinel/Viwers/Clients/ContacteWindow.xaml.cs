@@ -23,5 +23,20 @@ namespace WarehouseSentinel.Viwers.Clients
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AfegirClient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AplicarCanvisClient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

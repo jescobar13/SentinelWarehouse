@@ -107,9 +107,22 @@ namespace WarehouseSentinel.Viwers.Clients
 
         private void btn_afegirContacte_Click(object sender, RoutedEventArgs e)
         {
-            ContacteWindow contacteWindow = new ContacteWindow(context, client, new contacte(), modeControllerContacte.AFEGIR);
+            ContacteWindow contacteWindow = new ContacteWindow(
+                context, client, new contacte(), modeControllerContacte.AFEGIR);
             contacteWindow.ShowDialog();
             actualitzaLlistaContactes();
+        }
+
+        private void btn_modificarContacte_Click(object sender, RoutedEventArgs e)
+        {
+            if(listView_contactes.SelectedItems.Count == 1)
+            {
+                ContacteWindow contacteWindow = new ContacteWindow(
+                    context, client, listView_contactes.SelectedItem as contacte, 
+                    modeControllerContacte.MODIFICAR);
+                contacteWindow.ShowDialog();
+                actualitzaLlistaContactes();
+            }
         }
     }
 }

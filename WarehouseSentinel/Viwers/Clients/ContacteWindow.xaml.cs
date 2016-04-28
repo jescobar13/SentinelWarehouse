@@ -74,7 +74,17 @@ namespace WarehouseSentinel.Viwers.Clients
 
         private void btn_AplicarCanvisClient_Click(object sender, RoutedEventArgs e)
         {
+            contacte.personaNom = textBox_nomContacte.Text;
+            contacte.telef = textBox_telef1.Text;
+            contacte.telef2 = textBox_telef2.Text;
+            contacte.mob = textBox_mobil1.Text;
+            contacte.mob2 = textBox_mobil2.Text;
+            contacte.correuElectronic = textBox_correuElectronic.Text;
 
+            string retorna = controller.modificaContacte(contacte);
+
+            MessageBox.Show(retorna, "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
         }
     }
 }

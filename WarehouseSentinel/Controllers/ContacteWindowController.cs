@@ -40,9 +40,17 @@ namespace WarehouseSentinel.Controllers
             }
         }
 
-        internal string modificaContacte()
+        internal string modificaContacte(contacte contacte)
         {
-            return null;
+            try
+            {
+                tContacte.modify(contacte);
+                return "El contacte del client " + contacte.client.nom + " s'ha modificat correctament.";
+            }
+            catch (Exception ex)
+            {
+                return "El contacte del client " + contacte.client.nom + " no s'ha pogut modificar.";
+            }
         }
     }
 }

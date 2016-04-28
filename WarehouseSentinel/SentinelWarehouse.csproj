@@ -63,10 +63,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\AfegirClientWindowController.cs" />
-    <Compile Include="Controllers\ClientsWindowController.cs" />
-    <Compile Include="Controllers\ComandesWindowController.cs" />
-    <Compile Include="Controllers\ContacteWindowController.cs" />
+    <Compile Include="Controllers\Client-Contacte\AfegirClientWindowController.cs" />
+    <Compile Include="Controllers\Client-Contacte\ClientsWindowController.cs" />
+    <Compile Include="Controllers\Comanda\ComandesWindowController.cs" />
+    <Compile Include="Controllers\Client-Contacte\ContacteWindowController.cs" />
+    <Compile Include="Controllers\Producte\ProducteWindowController.cs" />
     <Compile Include="Models\albara.cs">
       <DependentUpon>SentinelDB.tt</DependentUpon>
     </Compile>
@@ -108,6 +109,7 @@
     </Compile>
     <Compile Include="Models\TClient.cs" />
     <Compile Include="Models\TContacte.cs" />
+    <Compile Include="Models\TProducte.cs" />
     <Compile Include="Viwers\Clients\AfegirClientWindow.xaml.cs">
       <DependentUpon>AfegirClientWindow.xaml</DependentUpon>
     </Compile>
@@ -116,6 +118,9 @@
     </Compile>
     <Compile Include="Viwers\Clients\ContacteWindow.xaml.cs">
       <DependentUpon>ContacteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viwers\Producte\ProducteWindow.xaml.cs">
+      <DependentUpon>ProducteWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viwers\Clients\ContacteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viwers\Producte\ProducteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,9 +186,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Viwers\Productes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\AddContact.png" />
   </ItemGroup>

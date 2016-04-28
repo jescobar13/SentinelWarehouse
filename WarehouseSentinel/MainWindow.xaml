@@ -14,7 +14,7 @@
                 <Menu x:Name="menu" Margin="0,0,0,0" Padding="4">
 
                     <MenuItem x:Name="menuItem_obrirClients" Header="Clients" Click="MenuItem_Click" />
-                    <MenuItem x:Name="menuItem_obrirProductes" Header="Productes"/>
+                    <MenuItem x:Name="menuItem_obrirProductes" Header="Productes" Click="menuItem_obrirProductes_Click"/>
                     
                 </Menu>
             </Border>

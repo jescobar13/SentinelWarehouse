@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,12 @@ namespace WarehouseSentinel.Models
         {
             context.producte.Remove(p);
             context.SaveChanges();
+        }
+
+        internal List<producte> getAll()
+        {
+            return (from taulaProducte in context.producte
+                    select taulaProducte).ToList();
         }
     }
 }

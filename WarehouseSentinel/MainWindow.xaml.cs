@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WarehouseSentinel.Controllers;
 using WarehouseSentinel.Viwers;
+using WarehouseSentinel.Viwers.Producta;
 
 namespace WarehouseSentinel
 {
@@ -38,6 +39,12 @@ namespace WarehouseSentinel
         {
             ClientsWindow clientsWindow = new ClientsWindow();
             clientsWindow.Show();
+        }
+
+        private void menuItem_obrirProductes_Click(object sender, RoutedEventArgs e)
+        {
+            ProducteWindow producteWindow = new ProducteWindow();
+            producteWindow.Show();
         }
     }
 }

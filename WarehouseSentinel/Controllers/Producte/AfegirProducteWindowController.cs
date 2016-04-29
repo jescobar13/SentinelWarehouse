@@ -30,5 +30,18 @@ namespace WarehouseSentinel.Controllers.Producte
                 return "El producte " + producte.nom + " no s'ha pogut guardar correctament.";
             }
         }
+
+        internal string modifica(producte producte)
+        {
+            try
+            {
+                tProducte.modify(producte);
+                return "El producte " + producte.nom + " s'ha modificat correctament.";
+            }
+            catch (Exception ex)
+            {
+                return "El producte " + producte.nom + " no s'ha pogut modificar correctament.";
+            }
+        }
     }
 }

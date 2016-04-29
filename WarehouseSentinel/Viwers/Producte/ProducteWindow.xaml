@@ -12,7 +12,7 @@
             <Border DockPanel.Dock="Top" Margin="0,0,0,5"
                     BorderBrush="Silver" BorderThickness="1">
                 <Menu x:Name="menu" Margin="0,0,0,0" Padding="4">
-                    <MenuItem x:Name="menuItem_tencarProductes" Header="Tencar Productes"/>
+                    <MenuItem x:Name="menuItem_tencarProductes" Header="Tencar Productes" Click="menuItem_tencarProductes_Click"/>
                 </Menu>
             </Border>
 
@@ -41,22 +41,20 @@
                 </ToolBar>
 
             </Border>
-            <Grid DockPanel.Dock="Top" Height="71">
+            <Grid DockPanel.Dock="Top" Height="71" Margin="5,5,5,5">
 
-                <!--<Grid Margin="0,10,10,10" HorizontalAlignment="Right" Width="642">
+                <Grid Margin="0,10,10,10" HorizontalAlignment="Right" Width="481">
                     <Border BorderBrush="Silver" BorderThickness="1" />
 
                     <TextBox x:Name="textBox_filtre" Height="30" Margin="0,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="textBox_filtre_TextChanged" HorizontalAlignment="Right" Width="197"/>
                     <Label x:Name="label" Content="Filtra per:" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="68" FontStyle="Italic"/>
 
                     <RadioButton GroupName="Filtre" x:Name="radioButton_filtreNom" Content="Nom" Margin="83,16,0,12" HorizontalAlignment="Left" Width="51"/>
-                    <RadioButton GroupName="Filtre" x:Name="radioButton_filtreCognom" Content="Cognom" Margin="139,16,0,12" HorizontalAlignment="Left" Width="72"/>
-                    <RadioButton GroupName="Filtre" x:Name="radioButton_filtreCIF" Content="CIF" Margin="216,16,0,12" HorizontalAlignment="Left" Width="46" IsChecked="True"/>
-                    <RadioButton GroupName="Filtre" x:Name="radioButton_filtreCodiPostal" Content="Codi Postal" Margin="267,16,0,12" HorizontalAlignment="Left" Width="91"/>
-                    <RadioButton GroupName="Filtre" x:Name="radioButton_filtrePais" Content="País" Margin="363,16,0,12" HorizontalAlignment="Left" Width="53"/>
+                    <RadioButton GroupName="Filtre" x:Name="radioButton_filtrePreuKg" Content="Preu kg." Margin="139,16,0,12" HorizontalAlignment="Left" Width="68"/>
+                    <RadioButton GroupName="Filtre" x:Name="radioButton_filtreUnitatCaixa" Content="Unitat per Caixa" Margin="212,16,0,12" HorizontalAlignment="Left" Width="53"/>
                 </Grid>
 
-                <Grid HorizontalAlignment="Left" Margin="10,10,0,10" Width="301">
+                <!--<Grid HorizontalAlignment="Left" Margin="10,10,0,10" Width="301">
                     <Border BorderBrush="Silver" BorderThickness="1"/>
 
                     <Label x:Name="label_Copy" Content="Visualitza:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="68" FontStyle="Italic" Margin="10,11,0,0"/>
@@ -85,8 +83,28 @@
 
                 </DataGrid.Columns>
 
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+
+                        <Border BorderThickness="0" Background="LightSteelBlue" Padding="5">
+                            <Grid>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="771*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button x:Name="btn_ModificarProducte" Grid.Column="0" Margin="5,10,5,5" VerticalAlignment="Top" Content="Modificar" Height="30" Click="btn_ModificarProducte_Click"/>
+                                
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+
             </DataGrid>
         </Grid>
-        
+
     </Grid>
 </Window>

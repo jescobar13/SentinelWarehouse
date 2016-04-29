@@ -44,7 +44,7 @@ namespace WarehouseSentinel.Viwers.Producta
         private void btn_AfegirProducte_Click(object sender, RoutedEventArgs e)
         {
             AfegirProducteWindow afegirProducteWindow = new AfegirProducteWindow(
-                controller.getBaseContext(), new producte());
+                controller.getBaseContext(), new producte(), modeControllerProducte.AFEGIR);
 
             afegirProducteWindow.ShowDialog();
             actualitzaProductes();
@@ -53,6 +53,21 @@ namespace WarehouseSentinel.Viwers.Producta
         private void menuItem_tencarProductes_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void textBox_filtre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btn_ModificarProducte_Click(object sender, RoutedEventArgs e)
+        {
+            AfegirProducteWindow modificaProducteWindow = new AfegirProducteWindow(
+                controller.getBaseContext(), dataGrid_productes.SelectedItem as producte, 
+                modeControllerProducte.MODIFICAR);
+
+            modificaProducteWindow.ShowDialog();
+            actualitzaProductes();
         }
     }
 }

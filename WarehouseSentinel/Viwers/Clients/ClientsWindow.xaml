@@ -50,7 +50,7 @@
 
             </Border>
             <Grid DockPanel.Dock="Top" Height="71">
-                
+
                 <Grid Margin="0,10,10,10" HorizontalAlignment="Right" Width="642">
                     <Border BorderBrush="Silver" BorderThickness="1" />
 
@@ -63,15 +63,15 @@
                     <RadioButton GroupName="Filtre" x:Name="radioButton_filtreCodiPostal" Content="Codi Postal" Margin="267,16,0,12" HorizontalAlignment="Left" Width="91"/>
                     <RadioButton GroupName="Filtre" x:Name="radioButton_filtrePais" Content="País" Margin="363,16,0,12" HorizontalAlignment="Left" Width="53"/>
                 </Grid>
-                
+
                 <Grid HorizontalAlignment="Left" Margin="10,10,0,10" Width="301">
                     <Border BorderBrush="Silver" BorderThickness="1"/>
-                    
+
                     <Label x:Name="label_Copy" Content="Visualitza:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="68" FontStyle="Italic" Margin="10,11,0,0"/>
                     <RadioButton GroupName="Visualitza" x:Name="radioButton_visualitzaActius" Content="Actiu" Margin="88,17,0,11" HorizontalAlignment="Left" Width="52" Checked="radioButton_visualitzaActius_Checked"/>
                     <RadioButton GroupName="Visualitza" x:Name="radioButton_visualitzaDeshabilitats" Content="Deshabilitats" Margin="145,17,0,11" HorizontalAlignment="Left" Width="89" Checked="radioButton_visualitzaDeshabilitats_Checked"/>
                     <RadioButton GroupName="Visualitza" x:Name="radioButton_visualitzaTots" Content="Tots" Margin="239,17,0,11" HorizontalAlignment="Left" Width="52" Checked="radioButton_visualitzaTots_Checked"/>
-                    
+
                 </Grid>
             </Grid>
 
@@ -97,13 +97,14 @@
 
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="771*"/>
-                                <ColumnDefinition Width="100*"/>
-                                <ColumnDefinition Width="100*"/>
-                            </Grid.ColumnDefinitions>
-                            <Border BorderThickness="0" Background="BlanchedAlmond" Padding="10">
+                        <Border BorderThickness="0" Background="LightSteelBlue" Padding="5">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="771*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
 
                                 <ListView Grid.Column="0" Name="listView_contactes" ItemsSource="{Binding Source=list}"  Loaded="listView_contactes_Loaded">
 
@@ -120,11 +121,10 @@
 
                                 </ListView>
 
-                            </Border>
-
-                            <Button x:Name="btn_ModificarClient" Grid.Column="1" Margin="5,10,5,5" VerticalAlignment="Top" Content="Modificar" Click="btn_ModificarClient_Click"/>
-                            <Button Grid.Column="1" Margin="5,40,5,5" VerticalAlignment="Top" Content="Hola"/>
-                        </Grid>
+                                <Button x:Name="btn_ModificarClient" Grid.Column="1" Margin="5,0,5,5" VerticalAlignment="Top" Content="Modificar" Height="30" Click="btn_ModificarClient_Click"/>
+                                
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>

@@ -8,6 +8,8 @@ using WarehouseSentinel.Models;
 
 namespace WarehouseSentinel.Controllers.Producte
 {
+    public enum modeControllerProducte { AFEGIR, MODIFICAR }
+
     public class ProducteWindowController
     {
         private SentinelDBEntities context;

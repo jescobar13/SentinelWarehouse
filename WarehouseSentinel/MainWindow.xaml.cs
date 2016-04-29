@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WarehouseSentinel.Controllers;
 using WarehouseSentinel.Viwers;
+using WarehouseSentinel.Viwers.Comanda;
 using WarehouseSentinel.Viwers.Producta;
 
 namespace WarehouseSentinel
@@ -45,6 +46,12 @@ namespace WarehouseSentinel
         {
             ProducteWindow producteWindow = new ProducteWindow();
             producteWindow.Show();
+        }
+
+        private void btn_novaComanda_Click(object sender, RoutedEventArgs e)
+        {
+            ComandaWindow comandaWindow = new ComandaWindow();
+            comandaWindow.ShowDialog();
         }
     }
 }

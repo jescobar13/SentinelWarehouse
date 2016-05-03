@@ -60,6 +60,7 @@ namespace WarehouseSentinel
         {
             ComandaWindow comandaWindow = new ComandaWindow(controller.getBaseContext(), new Models.comanda());
             comandaWindow.ShowDialog();
+            actualitzaCapcaleresComandes();
         }
     }
 }

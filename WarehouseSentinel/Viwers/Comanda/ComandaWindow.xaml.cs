@@ -36,9 +36,32 @@ namespace WarehouseSentinel.Viwers.Comanda
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            datePicker_dataComanda.Text = string.Format("{0:MM/dd/yyyy}", comanda.dataComanda);
-            datePicker_dataEntrega.Text = string.Format("{0:MM/dd/yyyy}", comanda.dataEntrega);
+            datePicker_dataComanda.Text = string.Format("{0:dd/MM/yyyy}", comanda.dataComanda);
+            datePicker_dataEntrega.Text = string.Format("{0:dd/MM/yyyy}", comanda.dataEntrega);
 
+        }
+
+        private void btn_selecClient_Click(object sender, RoutedEventArgs e)
+        {
+            SelecClientWindow selecClientWindow = new SelecClientWindow(controller, this);
+            selecClientWindow.ShowDialog();
+            if (client == null) return;
+            label_CIF.Content = client.CIF;
+            label_codiPostal.Content = client.codiPostal;
+            label_cognom.Content = client.cognom;
+            label_nomEmpresa.Content = client.nom;
+            label_pais.Content = client.pais;
+        }
+
+        private void btn_acceptarComanda_Click(object sender, RoutedEventArgs e)
+        {
+            comanda.dataComanda = Convert.ToDateTime(string.Format("{0:MM/dd/yyyy}", datePicker_dataComanda));
+            comanda.dataEntrega = Convert.ToDateTime(string.Format("{0:MM/dd/yyyy}", datePicker_dataEntrega));
+            comanda.Client_CIF = client.CIF;
+
+            string retorna = controller.guardaComanda(comanda);
+            Close();
+            MessageBox.Show(retorna, "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

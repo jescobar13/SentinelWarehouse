@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SentinelWarehouseDB.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SentinelWarehouseDB.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="albara">
           <Key>
             <PropertyRef Name="codi" />
@@ -38,10 +38,11 @@
             <PropertyRef Name="Client_Contacte_id" />
           </Key>
           <Property Name="codi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dataComanda" Type="datetime" Precision="0" />
-          <Property Name="dataEntrega" Type="datetime" Precision="0" />
+          <Property Name="dataComanda" Type="date" />
+          <Property Name="dataEntrega" Type="date" />
           <Property Name="Client_CIF" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Client_Contacte_id" Type="int" Nullable="false" />
+          <Property Name="estat" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="contacte">
           <Key>
@@ -258,11 +259,48 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
             <End Role="producte_has_liniacomanda" EntitySet="producte_has_liniacomanda" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SentinelWarehouseDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SentinelDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="albara" EntityType="SentinelWarehouseDB.albara" />
+          <EntitySet Name="client" EntityType="SentinelWarehouseDB.client" />
+          <EntitySet Name="comanda" EntityType="SentinelWarehouseDB.comanda" />
+          <EntitySet Name="contacte" EntityType="SentinelWarehouseDB.contacte" />
+          <EntitySet Name="liniaalbara" EntityType="SentinelWarehouseDB.liniaalbara" />
+          <EntitySet Name="liniacomanda" EntityType="SentinelWarehouseDB.liniacomanda" />
+          <EntitySet Name="producte" EntityType="SentinelWarehouseDB.producte" />
+          <EntitySet Name="producte_has_liniacomanda" EntityType="SentinelWarehouseDB.producte_has_liniacomanda" />
+          <AssociationSet Name="fk_Albara_Comanda1" Association="SentinelWarehouseDB.fk_Albara_Comanda1">
+            <End Role="comanda" EntitySet="comanda" />
+            <End Role="albara" EntitySet="albara" />
+          </AssociationSet>
+          <AssociationSet Name="fk_LiniaAlbara_Albara1" Association="SentinelWarehouseDB.fk_LiniaAlbara_Albara1">
+            <End Role="albara" EntitySet="albara" />
+            <End Role="liniaalbara" EntitySet="liniaalbara" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comanda_Client1" Association="SentinelWarehouseDB.fk_Comanda_Client1">
+            <End Role="client" EntitySet="client" />
+            <End Role="comanda" EntitySet="comanda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contacte_Client1" Association="SentinelWarehouseDB.fk_Contacte_Client1">
+            <End Role="client" EntitySet="client" />
+            <End Role="contacte" EntitySet="contacte" />
+          </AssociationSet>
+          <AssociationSet Name="fk_LiniaComanda_Comanda1" Association="SentinelWarehouseDB.fk_LiniaComanda_Comanda1">
+            <End Role="comanda" EntitySet="comanda" />
+            <End Role="liniacomanda" EntitySet="liniacomanda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_LiniaAlbara_LiniaComanda1" Association="SentinelWarehouseDB.fk_LiniaAlbara_LiniaComanda1">
+            <End Role="liniacomanda" EntitySet="liniacomanda" />
+            <End Role="liniaalbara" EntitySet="liniaalbara" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producte_has_LiniaComanda_Producte1" Association="SentinelWarehouseDB.fk_Producte_has_LiniaComanda_Producte1">
+            <End Role="producte" EntitySet="producte" />
+            <End Role="producte_has_liniacomanda" EntitySet="producte_has_liniacomanda" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="albara">
           <Key>
             <PropertyRef Name="codi" />
@@ -274,24 +312,24 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           <Property Name="dataAlbara" Type="DateTime" />
           <Property Name="dataEntrega" Type="DateTime" />
           <Property Name="Comanda_codi" Type="Int32" Nullable="false" />
-          <Property Name="Comanda_Client_CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comanda_Client_CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Comanda_Client_Contacte_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="comanda" Relationship="Self.fk_Albara_Comanda1" FromRole="albara" ToRole="comanda" />
-          <NavigationProperty Name="liniaalbara" Relationship="Self.fk_LiniaAlbara_Albara1" FromRole="albara" ToRole="liniaalbara" />
+          <NavigationProperty Name="comanda" Relationship="SentinelWarehouseDB.fk_Albara_Comanda1" FromRole="albara" ToRole="comanda" />
+          <NavigationProperty Name="liniaalbara" Relationship="SentinelWarehouseDB.fk_LiniaAlbara_Albara1" FromRole="albara" ToRole="liniaalbara" />
         </EntityType>
         <EntityType Name="client">
           <Key>
             <PropertyRef Name="CIF" />
           </Key>
-          <Property Name="CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="nom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="cognom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="adreça" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="codiPostal" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="pais" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="actiu" Type="Boolean" />
-          <NavigationProperty Name="comanda" Relationship="Self.fk_Comanda_Client1" FromRole="client" ToRole="comanda" />
-          <NavigationProperty Name="contacte" Relationship="Self.fk_Contacte_Client1" FromRole="client" ToRole="contacte" />
+          <NavigationProperty Name="comanda" Relationship="SentinelWarehouseDB.fk_Comanda_Client1" FromRole="client" ToRole="comanda" />
+          <NavigationProperty Name="contacte" Relationship="SentinelWarehouseDB.fk_Contacte_Client1" FromRole="client" ToRole="contacte" />
         </EntityType>
         <EntityType Name="comanda">
           <Key>
@@ -302,11 +340,12 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           <Property Name="codi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dataComanda" Type="DateTime" />
           <Property Name="dataEntrega" Type="DateTime" />
-          <Property Name="Client_CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Client_CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Client_Contacte_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="albara" Relationship="Self.fk_Albara_Comanda1" FromRole="comanda" ToRole="albara" />
-          <NavigationProperty Name="client" Relationship="Self.fk_Comanda_Client1" FromRole="comanda" ToRole="client" />
-          <NavigationProperty Name="liniacomanda" Relationship="Self.fk_LiniaComanda_Comanda1" FromRole="comanda" ToRole="liniacomanda" />
+          <Property Name="estat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="albara" Relationship="SentinelWarehouseDB.fk_Albara_Comanda1" FromRole="comanda" ToRole="albara" />
+          <NavigationProperty Name="client" Relationship="SentinelWarehouseDB.fk_Comanda_Client1" FromRole="comanda" ToRole="client" />
+          <NavigationProperty Name="liniacomanda" Relationship="SentinelWarehouseDB.fk_LiniaComanda_Comanda1" FromRole="comanda" ToRole="liniacomanda" />
         </EntityType>
         <EntityType Name="contacte">
           <Key>
@@ -314,14 +353,14 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
             <PropertyRef Name="Client_CIF" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="personaNom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personaNom" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="telef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="telef2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="mob" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="mob2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="correuElectronic" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Client_CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="client" Relationship="Self.fk_Contacte_Client1" FromRole="contacte" ToRole="client" />
+          <Property Name="Client_CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="client" Relationship="SentinelWarehouseDB.fk_Contacte_Client1" FromRole="contacte" ToRole="client" />
         </EntityType>
         <EntityType Name="liniaalbara">
           <Key>
@@ -336,18 +375,18 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
             <PropertyRef Name="Albara_Comanda_Client_Contacte_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codiTracabilitat" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codiTracabilitat" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="producteNom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="LiniaComanda_id" Type="Int32" Nullable="false" />
           <Property Name="LiniaComanda_Comanda_codi" Type="Int32" Nullable="false" />
-          <Property Name="LiniaComanda_Comanda_Client_CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LiniaComanda_Comanda_Client_CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LiniaComanda_Comanda_Client_Contacte_id" Type="Int32" Nullable="false" />
           <Property Name="Albara_codi" Type="Int32" Nullable="false" />
           <Property Name="Albara_Comanda_codi" Type="Int32" Nullable="false" />
-          <Property Name="Albara_Comanda_Client_CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Albara_Comanda_Client_CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Albara_Comanda_Client_Contacte_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="albara" Relationship="Self.fk_LiniaAlbara_Albara1" FromRole="liniaalbara" ToRole="albara" />
-          <NavigationProperty Name="liniacomanda" Relationship="Self.fk_LiniaAlbara_LiniaComanda1" FromRole="liniaalbara" ToRole="liniacomanda" />
+          <NavigationProperty Name="albara" Relationship="SentinelWarehouseDB.fk_LiniaAlbara_Albara1" FromRole="liniaalbara" ToRole="albara" />
+          <NavigationProperty Name="liniacomanda" Relationship="SentinelWarehouseDB.fk_LiniaAlbara_LiniaComanda1" FromRole="liniaalbara" ToRole="liniacomanda" />
         </EntityType>
         <EntityType Name="liniacomanda">
           <Key>
@@ -360,10 +399,10 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           <Property Name="preuKg" Type="Double" />
           <Property Name="quantitat" Type="Int32" />
           <Property Name="Comanda_codi" Type="Int32" Nullable="false" />
-          <Property Name="Comanda_Client_CIF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comanda_Client_CIF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Comanda_Client_Contacte_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="comanda" Relationship="Self.fk_LiniaComanda_Comanda1" FromRole="liniacomanda" ToRole="comanda" />
-          <NavigationProperty Name="liniaalbara" Relationship="Self.fk_LiniaAlbara_LiniaComanda1" FromRole="liniacomanda" ToRole="liniaalbara" />
+          <NavigationProperty Name="comanda" Relationship="SentinelWarehouseDB.fk_LiniaComanda_Comanda1" FromRole="liniacomanda" ToRole="comanda" />
+          <NavigationProperty Name="liniaalbara" Relationship="SentinelWarehouseDB.fk_LiniaAlbara_LiniaComanda1" FromRole="liniacomanda" ToRole="liniaalbara" />
         </EntityType>
         <EntityType Name="producte">
           <Key>
@@ -374,7 +413,7 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           <Property Name="preuKg" Type="Double" />
           <Property Name="unitatCaixa" Type="Int32" />
           <Property Name="EAN13" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="producte_has_liniacomanda" Relationship="Self.fk_Producte_has_LiniaComanda_Producte1" FromRole="producte" ToRole="producte_has_liniacomanda" />
+          <NavigationProperty Name="producte_has_liniacomanda" Relationship="SentinelWarehouseDB.fk_Producte_has_LiniaComanda_Producte1" FromRole="producte" ToRole="producte_has_liniacomanda" />
         </EntityType>
         <EntityType Name="producte_has_liniacomanda">
           <Key>
@@ -383,11 +422,11 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </Key>
           <Property Name="Producte_id" Type="Int32" Nullable="false" />
           <Property Name="LiniaComanda_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="producte" Relationship="Self.fk_Producte_has_LiniaComanda_Producte1" FromRole="producte_has_liniacomanda" ToRole="producte" />
+          <NavigationProperty Name="producte" Relationship="SentinelWarehouseDB.fk_Producte_has_LiniaComanda_Producte1" FromRole="producte_has_liniacomanda" ToRole="producte" />
         </EntityType>
         <Association Name="fk_Albara_Comanda1">
-          <End Role="comanda" Type="Self.comanda" Multiplicity="1" />
-          <End Role="albara" Type="Self.albara" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.comanda" Role="comanda" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.albara" Role="albara" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="comanda">
               <PropertyRef Name="codi" />
@@ -402,8 +441,8 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_LiniaAlbara_Albara1">
-          <End Role="albara" Type="Self.albara" Multiplicity="1" />
-          <End Role="liniaalbara" Type="Self.liniaalbara" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.albara" Role="albara" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.liniaalbara" Role="liniaalbara" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="albara">
               <PropertyRef Name="codi" />
@@ -420,8 +459,8 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Comanda_Client1">
-          <End Role="client" Type="Self.client" Multiplicity="1" />
-          <End Role="comanda" Type="Self.comanda" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.client" Role="client" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.comanda" Role="comanda" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="client">
               <PropertyRef Name="CIF" />
@@ -432,8 +471,8 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Contacte_Client1">
-          <End Role="client" Type="Self.client" Multiplicity="1" />
-          <End Role="contacte" Type="Self.contacte" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.client" Role="client" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.contacte" Role="contacte" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="client">
               <PropertyRef Name="CIF" />
@@ -444,8 +483,8 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_LiniaComanda_Comanda1">
-          <End Role="comanda" Type="Self.comanda" Multiplicity="1" />
-          <End Role="liniacomanda" Type="Self.liniacomanda" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.comanda" Role="comanda" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.liniacomanda" Role="liniacomanda" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="comanda">
               <PropertyRef Name="codi" />
@@ -460,8 +499,8 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_LiniaAlbara_LiniaComanda1">
-          <End Role="liniacomanda" Type="Self.liniacomanda" Multiplicity="1" />
-          <End Role="liniaalbara" Type="Self.liniaalbara" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.liniacomanda" Role="liniacomanda" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.liniaalbara" Role="liniaalbara" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="liniacomanda">
               <PropertyRef Name="id" />
@@ -478,8 +517,8 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Producte_has_LiniaComanda_Producte1">
-          <End Role="producte" Type="Self.producte" Multiplicity="1" />
-          <End Role="producte_has_liniacomanda" Type="Self.producte_has_liniacomanda" Multiplicity="*" />
+          <End Type="SentinelWarehouseDB.producte" Role="producte" Multiplicity="1" />
+          <End Type="SentinelWarehouseDB.producte_has_liniacomanda" Role="producte_has_liniacomanda" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="producte">
               <PropertyRef Name="id" />
@@ -489,44 +528,6 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SentinelDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="albara" EntityType="Self.albara" />
-          <EntitySet Name="client" EntityType="Self.client" />
-          <EntitySet Name="comanda" EntityType="Self.comanda" />
-          <EntitySet Name="contacte" EntityType="Self.contacte" />
-          <EntitySet Name="liniaalbara" EntityType="Self.liniaalbara" />
-          <EntitySet Name="liniacomanda" EntityType="Self.liniacomanda" />
-          <EntitySet Name="producte" EntityType="Self.producte" />
-          <EntitySet Name="producte_has_liniacomanda" EntityType="Self.producte_has_liniacomanda" />
-          <AssociationSet Name="fk_Albara_Comanda1" Association="Self.fk_Albara_Comanda1">
-            <End Role="comanda" EntitySet="comanda" />
-            <End Role="albara" EntitySet="albara" />
-          </AssociationSet>
-          <AssociationSet Name="fk_LiniaAlbara_Albara1" Association="Self.fk_LiniaAlbara_Albara1">
-            <End Role="albara" EntitySet="albara" />
-            <End Role="liniaalbara" EntitySet="liniaalbara" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Comanda_Client1" Association="Self.fk_Comanda_Client1">
-            <End Role="client" EntitySet="client" />
-            <End Role="comanda" EntitySet="comanda" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Contacte_Client1" Association="Self.fk_Contacte_Client1">
-            <End Role="client" EntitySet="client" />
-            <End Role="contacte" EntitySet="contacte" />
-          </AssociationSet>
-          <AssociationSet Name="fk_LiniaComanda_Comanda1" Association="Self.fk_LiniaComanda_Comanda1">
-            <End Role="comanda" EntitySet="comanda" />
-            <End Role="liniacomanda" EntitySet="liniacomanda" />
-          </AssociationSet>
-          <AssociationSet Name="fk_LiniaAlbara_LiniaComanda1" Association="Self.fk_LiniaAlbara_LiniaComanda1">
-            <End Role="liniacomanda" EntitySet="liniacomanda" />
-            <End Role="liniaalbara" EntitySet="liniaalbara" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Producte_has_LiniaComanda_Producte1" Association="Self.fk_Producte_has_LiniaComanda_Producte1">
-            <End Role="producte" EntitySet="producte" />
-            <End Role="producte_has_liniacomanda" EntitySet="producte_has_liniacomanda" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -536,98 +537,99 @@ advertencia 6035: La relación 'fk_Producte_has_LiniaComanda_LiniaComanda1' tien
           <EntitySetMapping Name="albara">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.albara">
               <MappingFragment StoreEntitySet="albara">
-                <ScalarProperty Name="codi" ColumnName="codi" />
-                <ScalarProperty Name="dataAlbara" ColumnName="dataAlbara" />
-                <ScalarProperty Name="dataEntrega" ColumnName="dataEntrega" />
-                <ScalarProperty Name="Comanda_codi" ColumnName="Comanda_codi" />
-                <ScalarProperty Name="Comanda_Client_CIF" ColumnName="Comanda_Client_CIF" />
                 <ScalarProperty Name="Comanda_Client_Contacte_id" ColumnName="Comanda_Client_Contacte_id" />
+                <ScalarProperty Name="Comanda_Client_CIF" ColumnName="Comanda_Client_CIF" />
+                <ScalarProperty Name="Comanda_codi" ColumnName="Comanda_codi" />
+                <ScalarProperty Name="dataEntrega" ColumnName="dataEntrega" />
+                <ScalarProperty Name="dataAlbara" ColumnName="dataAlbara" />
+                <ScalarProperty Name="codi" ColumnName="codi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="client">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.client">
               <MappingFragment StoreEntitySet="client">
-                <ScalarProperty Name="CIF" ColumnName="CIF" />
-                <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="cognom" ColumnName="cognom" />
-                <ScalarProperty Name="adreça" ColumnName="adreça" />
-                <ScalarProperty Name="codiPostal" ColumnName="codiPostal" />
-                <ScalarProperty Name="pais" ColumnName="pais" />
                 <ScalarProperty Name="actiu" ColumnName="actiu" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="codiPostal" ColumnName="codiPostal" />
+                <ScalarProperty Name="adreça" ColumnName="adreça" />
+                <ScalarProperty Name="cognom" ColumnName="cognom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="comanda">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.comanda">
               <MappingFragment StoreEntitySet="comanda">
-                <ScalarProperty Name="codi" ColumnName="codi" />
-                <ScalarProperty Name="dataComanda" ColumnName="dataComanda" />
-                <ScalarProperty Name="dataEntrega" ColumnName="dataEntrega" />
-                <ScalarProperty Name="Client_CIF" ColumnName="Client_CIF" />
+                <ScalarProperty Name="estat" ColumnName="estat" />
                 <ScalarProperty Name="Client_Contacte_id" ColumnName="Client_Contacte_id" />
+                <ScalarProperty Name="Client_CIF" ColumnName="Client_CIF" />
+                <ScalarProperty Name="dataEntrega" ColumnName="dataEntrega" />
+                <ScalarProperty Name="dataComanda" ColumnName="dataComanda" />
+                <ScalarProperty Name="codi" ColumnName="codi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="contacte">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.contacte">
               <MappingFragment StoreEntitySet="contacte">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="personaNom" ColumnName="personaNom" />
-                <ScalarProperty Name="telef" ColumnName="telef" />
-                <ScalarProperty Name="telef2" ColumnName="telef2" />
-                <ScalarProperty Name="mob" ColumnName="mob" />
-                <ScalarProperty Name="mob2" ColumnName="mob2" />
-                <ScalarProperty Name="correuElectronic" ColumnName="correuElectronic" />
                 <ScalarProperty Name="Client_CIF" ColumnName="Client_CIF" />
+                <ScalarProperty Name="correuElectronic" ColumnName="correuElectronic" />
+                <ScalarProperty Name="mob2" ColumnName="mob2" />
+                <ScalarProperty Name="mob" ColumnName="mob" />
+                <ScalarProperty Name="telef2" ColumnName="telef2" />
+                <ScalarProperty Name="telef" ColumnName="telef" />
+                <ScalarProperty Name="personaNom" ColumnName="personaNom" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="liniaalbara">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.liniaalbara">
               <MappingFragment StoreEntitySet="liniaalbara">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="codiTracabilitat" ColumnName="codiTracabilitat" />
-                <ScalarProperty Name="producteNom" ColumnName="producteNom" />
-                <ScalarProperty Name="LiniaComanda_id" ColumnName="LiniaComanda_id" />
-                <ScalarProperty Name="LiniaComanda_Comanda_codi" ColumnName="LiniaComanda_Comanda_codi" />
-                <ScalarProperty Name="LiniaComanda_Comanda_Client_CIF" ColumnName="LiniaComanda_Comanda_Client_CIF" />
-                <ScalarProperty Name="LiniaComanda_Comanda_Client_Contacte_id" ColumnName="LiniaComanda_Comanda_Client_Contacte_id" />
-                <ScalarProperty Name="Albara_codi" ColumnName="Albara_codi" />
-                <ScalarProperty Name="Albara_Comanda_codi" ColumnName="Albara_Comanda_codi" />
-                <ScalarProperty Name="Albara_Comanda_Client_CIF" ColumnName="Albara_Comanda_Client_CIF" />
                 <ScalarProperty Name="Albara_Comanda_Client_Contacte_id" ColumnName="Albara_Comanda_Client_Contacte_id" />
+                <ScalarProperty Name="Albara_Comanda_Client_CIF" ColumnName="Albara_Comanda_Client_CIF" />
+                <ScalarProperty Name="Albara_Comanda_codi" ColumnName="Albara_Comanda_codi" />
+                <ScalarProperty Name="Albara_codi" ColumnName="Albara_codi" />
+                <ScalarProperty Name="LiniaComanda_Comanda_Client_Contacte_id" ColumnName="LiniaComanda_Comanda_Client_Contacte_id" />
+                <ScalarProperty Name="LiniaComanda_Comanda_Client_CIF" ColumnName="LiniaComanda_Comanda_Client_CIF" />
+                <ScalarProperty Name="LiniaComanda_Comanda_codi" ColumnName="LiniaComanda_Comanda_codi" />
+                <ScalarProperty Name="LiniaComanda_id" ColumnName="LiniaComanda_id" />
+                <ScalarProperty Name="producteNom" ColumnName="producteNom" />
+                <ScalarProperty Name="codiTracabilitat" ColumnName="codiTracabilitat" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="liniacomanda">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.liniacomanda">
               <MappingFragment StoreEntitySet="liniacomanda">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="preuKg" ColumnName="preuKg" />
-                <ScalarProperty Name="quantitat" ColumnName="quantitat" />
-                <ScalarProperty Name="Comanda_codi" ColumnName="Comanda_codi" />
-                <ScalarProperty Name="Comanda_Client_CIF" ColumnName="Comanda_Client_CIF" />
                 <ScalarProperty Name="Comanda_Client_Contacte_id" ColumnName="Comanda_Client_Contacte_id" />
+                <ScalarProperty Name="Comanda_Client_CIF" ColumnName="Comanda_Client_CIF" />
+                <ScalarProperty Name="Comanda_codi" ColumnName="Comanda_codi" />
+                <ScalarProperty Name="quantitat" ColumnName="quantitat" />
+                <ScalarProperty Name="preuKg" ColumnName="preuKg" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="producte">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.producte">
               <MappingFragment StoreEntitySet="producte">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="preuKg" ColumnName="preuKg" />
-                <ScalarProperty Name="unitatCaixa" ColumnName="unitatCaixa" />
                 <ScalarProperty Name="EAN13" ColumnName="EAN13" />
+                <ScalarProperty Name="unitatCaixa" ColumnName="unitatCaixa" />
+                <ScalarProperty Name="preuKg" ColumnName="preuKg" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="producte_has_liniacomanda">
             <EntityTypeMapping TypeName="SentinelWarehouseDB.producte_has_liniacomanda">
               <MappingFragment StoreEntitySet="producte_has_liniacomanda">
-                <ScalarProperty Name="Producte_id" ColumnName="Producte_id" />
                 <ScalarProperty Name="LiniaComanda_id" ColumnName="LiniaComanda_id" />
+                <ScalarProperty Name="Producte_id" ColumnName="Producte_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

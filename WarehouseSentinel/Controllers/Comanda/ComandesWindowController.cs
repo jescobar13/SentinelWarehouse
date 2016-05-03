@@ -11,9 +11,9 @@ namespace WarehouseSentinel.Controllers
     {
         SentinelDBEntities context;
 
-        public ComandesWindowController()
+        public ComandesWindowController(SentinelDBEntities context)
         {
-            this.context = new SentinelDBEntities();
+            this.context = context;
         }
     }
 }

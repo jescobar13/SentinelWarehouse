@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseSentinel.Viwers.Comanda"
         mc:Ignorable="d"
-        Title="Sentinel: Comanda" Height="565.172" Width="858.048">
+        Title="Sentinel: Comanda" Height="565.172" Width="858.048" Loaded="Window_Loaded">
     <Grid>
         <Grid Margin="10,10,10,40">
             <Grid Height="82" VerticalAlignment="Top">

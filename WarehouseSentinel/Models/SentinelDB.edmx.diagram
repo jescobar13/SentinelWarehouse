@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ff0da16aea1c494ea9bc790ba4610005" Name="Diagram1">
-        <EntityTypeShape EntityType="SentinelWarehouseDB.albara" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.client" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.comanda" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.contacte" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.liniaalbara" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.liniacomanda" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.producte" Width="1.5" PointX="7.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SentinelWarehouseDB.producte_has_liniacomanda" Width="1.5" PointX="10" PointY="8.25" IsExpanded="true" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_Albara_Comanda1" ManuallyRouted="false" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_LiniaAlbara_Albara1" ManuallyRouted="false" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_Comanda_Client1" ManuallyRouted="false" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_Contacte_Client1" ManuallyRouted="false" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_LiniaComanda_Comanda1" ManuallyRouted="false" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_LiniaAlbara_LiniaComanda1" ManuallyRouted="false" />
-        <AssociationConnector Association="SentinelWarehouseDB.fk_Producte_has_LiniaComanda_Producte1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.albara" Width="1.5" PointX="5.25" PointY="5.375" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.client" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.comanda" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.contacte" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.liniaalbara" Width="1.5" PointX="7.5" PointY="6.5" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.liniacomanda" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.producte" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="SentinelWarehouseDB.producte_has_liniacomanda" Width="1.5" PointX="8" PointY="1.25" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_Albara_Comanda1" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_LiniaAlbara_Albara1" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_Comanda_Client1" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_Contacte_Client1" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_LiniaComanda_Comanda1" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_LiniaAlbara_LiniaComanda1" />
+        <AssociationConnector Association="SentinelWarehouseDB.fk_Producte_has_LiniaComanda_Producte1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

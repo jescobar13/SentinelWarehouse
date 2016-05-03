@@ -67,6 +67,7 @@
     <Compile Include="Controllers\Client-Contacte\ClientsWindowController.cs" />
     <Compile Include="Controllers\Comanda\ComandesWindowController.cs" />
     <Compile Include="Controllers\Client-Contacte\ContacteWindowController.cs" />
+    <Compile Include="Controllers\MainWindowController.cs" />
     <Compile Include="Controllers\Producte\AfegirProducteWindowController.cs" />
     <Compile Include="Controllers\Producte\ProducteWindowController.cs" />
     <Compile Include="Models\albara.cs">

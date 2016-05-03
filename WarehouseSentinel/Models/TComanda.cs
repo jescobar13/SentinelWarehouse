@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,12 @@ namespace WarehouseSentinel.Models
         {
             context.comanda.Remove(c);
             context.SaveChanges();
+        }
+
+        internal IEnumerable getAll()
+        {
+            return (from taulaComandes in context.comanda
+                    select taulaComandes).ToList();
         }
     }
 }

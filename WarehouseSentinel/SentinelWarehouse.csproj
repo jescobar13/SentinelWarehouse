@@ -91,9 +91,6 @@
     <Compile Include="Models\producte.cs">
       <DependentUpon>SentinelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\producte_has_liniacomanda.cs">
-      <DependentUpon>SentinelDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SentinelDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

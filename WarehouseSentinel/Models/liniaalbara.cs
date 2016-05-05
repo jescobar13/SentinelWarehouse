@@ -17,16 +17,11 @@ namespace WarehouseSentinel.Models
         public int id { get; set; }
         public string codiTracabilitat { get; set; }
         public string producteNom { get; set; }
-        public int LiniaComanda_id { get; set; }
-        public int LiniaComanda_Comanda_codi { get; set; }
-        public string LiniaComanda_Comanda_Client_CIF { get; set; }
-        public int LiniaComanda_Comanda_Client_Contacte_id { get; set; }
         public int Albara_codi { get; set; }
         public int Albara_Comanda_codi { get; set; }
         public string Albara_Comanda_Client_CIF { get; set; }
         public int Albara_Comanda_Client_Contacte_id { get; set; }
     
         public virtual albara albara { get; set; }
-        public virtual liniacomanda liniacomanda { get; set; }
     }
 }

@@ -38,11 +38,6 @@ namespace WarehouseSentinel.Viwers.Clients
 
         private void afegirClientWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (mode == modeControllerClient.modificar)
-                textBox_CIF.IsEnabled = false;
-            else
-                btn_AplicarCanvisClient.Visibility = Visibility.Hidden;
-
             textBox_CIF.Text = client.CIF;
             textBox_EmpresaNom.Text = client.nom;
             textBox_Cognom.Text = client.cognom;
@@ -57,11 +52,11 @@ namespace WarehouseSentinel.Viwers.Clients
 
             switch (mode)
             {
-                case modeControllerClient.afegir:
+                case modeControllerClient.modificar:
                     btn_AfegirClient.Visibility = Visibility.Hidden;
                     break;
 
-                case modeControllerClient.modificar:
+                case modeControllerClient.afegir:
                     btn_AplicarCanvisClient.Visibility = Visibility.Hidden;
                     break;
             }
@@ -86,7 +81,7 @@ namespace WarehouseSentinel.Viwers.Clients
             client.codiPostal = textBox_CodiPostal.Text;
             client.pais = textBox_Pais.Text;
 
-            if (radioButton_estatActiu.IsEnabled == true)
+            if (radioButton_estatActiu.IsChecked == true)
                 client.actiu = true;
             else
                 client.actiu = false;
@@ -114,6 +109,7 @@ namespace WarehouseSentinel.Viwers.Clients
             string retorna = controller.afegeix(client);
 
             MessageBox.Show(retorna, "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
         }
 
         private void btn_afegirContacte_Click(object sender, RoutedEventArgs e)

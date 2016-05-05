@@ -33,6 +33,7 @@ namespace WarehouseSentinel.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return "El client " + c.nom.ToUpper() + " no s'ha pogut afegir.";
             }
         }

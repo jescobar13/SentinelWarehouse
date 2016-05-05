@@ -14,19 +14,15 @@ namespace WarehouseSentinel.Models
     
     public partial class liniacomanda
     {
-        public liniacomanda()
-        {
-            this.liniaalbara = new HashSet<liniaalbara>();
-        }
-    
         public int id { get; set; }
         public Nullable<double> preuKg { get; set; }
         public Nullable<int> quantitat { get; set; }
         public int Comanda_codi { get; set; }
         public string Comanda_Client_CIF { get; set; }
         public int Comanda_Client_Contacte_id { get; set; }
+        public int Producte_id { get; set; }
     
         public virtual comanda comanda { get; set; }
-        public virtual ICollection<liniaalbara> liniaalbara { get; set; }
+        public virtual producte producte { get; set; }
     }
 }

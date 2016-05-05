@@ -67,6 +67,7 @@
     <Compile Include="Controllers\Client-Contacte\ClientsWindowController.cs" />
     <Compile Include="Controllers\Comanda\ComandesWindowController.cs" />
     <Compile Include="Controllers\Client-Contacte\ContacteWindowController.cs" />
+    <Compile Include="Controllers\MainWindowController.cs" />
     <Compile Include="Controllers\Producte\AfegirProducteWindowController.cs" />
     <Compile Include="Controllers\Producte\ProducteWindowController.cs" />
     <Compile Include="Models\albara.cs">
@@ -90,9 +91,6 @@
     <Compile Include="Models\producte.cs">
       <DependentUpon>SentinelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\producte_has_liniacomanda.cs">
-      <DependentUpon>SentinelDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SentinelDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,7 +107,9 @@
       <DependentUpon>SentinelDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TClient.cs" />
+    <Compile Include="Models\TComanda.cs" />
     <Compile Include="Models\TContacte.cs" />
+    <Compile Include="Models\TLiniaComanda.cs" />
     <Compile Include="Models\TProducte.cs" />
     <Compile Include="Viwers\Clients\AfegirClientWindow.xaml.cs">
       <DependentUpon>AfegirClientWindow.xaml</DependentUpon>
@@ -119,6 +119,12 @@
     </Compile>
     <Compile Include="Viwers\Clients\ContacteWindow.xaml.cs">
       <DependentUpon>ContacteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viwers\Comanda\ComandaWindow.xaml.cs">
+      <DependentUpon>ComandaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viwers\Comanda\SelecClientWindow.xaml.cs">
+      <DependentUpon>SelecClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Viwers\Producte\AfegirProducteWindow.xaml.cs">
       <DependentUpon>AfegirProducteWindow.xaml</DependentUpon>
@@ -147,6 +153,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viwers\Clients\ContacteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viwers\Comanda\ComandaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viwers\Comanda\SelecClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +208,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddContact.png" />
   </ItemGroup>

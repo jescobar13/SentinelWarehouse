@@ -24,6 +24,10 @@
 
                 <ToolBar Name="barradHeines" >
 
+                    <Button x:Name="btn_novaComanda" Content="Nova Comanda" Click="btn_novaComanda_Click"/>
+
+                    <Separator/>
+
                 </ToolBar>
 
             </Border>
@@ -31,7 +35,7 @@
             <Border DockPanel.Dock="Top" Margin="0,5"
                     BorderBrush="Silver" BorderThickness="1" Height="50">
 
-                
+
 
             </Border>
 
@@ -46,14 +50,17 @@
 
             <Grid Background="#FFE5E5E5">
 
-                <DataGrid x:Name="dataGrid_capcaleraComandes" Margin="0,0,0,0">
+                <DataGrid x:Name="dataGrid_capcaleraComandes" Margin="0,0,0,0"
+                          ItemsSource="{Binding Source=list}" AutoGenerateColumns="False"
+                          CanUserResizeColumns="True" MinColumnWidth="70" IsReadOnly="True"
+                          AlternatingRowBackground="#FFE0E3F0">
 
                     <DataGrid.Columns>
 
-                        <DataGridTextColumn Header="Client"/>
-                        <DataGridTextColumn Header="Data Comanda"/>
-                        <DataGridTextColumn Header="Data Entrega"/>
-                        <DataGridTextColumn Header="Estat"/>
+                        <DataGridTextColumn Header="Client" Binding="{Binding client.nom}"/>
+                        <DataGridTextColumn Header="Data Comanda" Binding="{Binding dataComanda}"/>
+                        <DataGridTextColumn Header="Data Entrega" Binding="{Binding dataEntrega}"/>
+                        <DataGridTextColumn Header="Estat" Binding="{Binding estat}"/>
 
                     </DataGrid.Columns>
 
@@ -63,7 +70,7 @@
 
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" />
 
-            <DataGrid x:Name="dataGrid" Grid.Column="2" Margin="5,0,0,0" Grid.ColumnSpan="2" >
+            <DataGrid x:Name="dataGrid_productes" Grid.Column="2" Margin="5,0,0,0" Grid.ColumnSpan="2" >
 
                 <DataGrid.Columns>
 

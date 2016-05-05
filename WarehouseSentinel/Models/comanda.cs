@@ -25,6 +25,7 @@ namespace WarehouseSentinel.Models
         public Nullable<System.DateTime> dataEntrega { get; set; }
         public string Client_CIF { get; set; }
         public int Client_Contacte_id { get; set; }
+        public string estat { get; set; }
     
         public virtual ICollection<albara> albara { get; set; }
         public virtual client client { get; set; }

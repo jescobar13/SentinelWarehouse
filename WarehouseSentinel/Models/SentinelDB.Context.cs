@@ -32,6 +32,5 @@ namespace WarehouseSentinel.Models
         public DbSet<liniaalbara> liniaalbara { get; set; }
         public DbSet<liniacomanda> liniacomanda { get; set; }
         public DbSet<producte> producte { get; set; }
-        public DbSet<producte_has_liniacomanda> producte_has_liniacomanda { get; set; }
     }
 }

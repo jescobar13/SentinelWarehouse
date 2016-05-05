@@ -16,7 +16,7 @@ namespace WarehouseSentinel.Models
     {
         public producte()
         {
-            this.producte_has_liniacomanda = new HashSet<producte_has_liniacomanda>();
+            this.liniacomanda = new HashSet<liniacomanda>();
         }
     
         public int id { get; set; }
@@ -25,6 +25,6 @@ namespace WarehouseSentinel.Models
         public Nullable<int> unitatCaixa { get; set; }
         public string EAN13 { get; set; }
     
-        public virtual ICollection<producte_has_liniacomanda> producte_has_liniacomanda { get; set; }
+        public virtual ICollection<liniacomanda> liniacomanda { get; set; }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WarehouseSentinel.Controllers;
 using WarehouseSentinel.Viwers;
+using WarehouseSentinel.Viwers.Comanda;
 using WarehouseSentinel.Viwers.Producta;
 
 namespace WarehouseSentinel
@@ -23,16 +24,24 @@ namespace WarehouseSentinel
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowController controller;
+
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private ComandesWindowController controller;
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            controller = new ComandesWindowController();
+            controller = new MainWindowController();
+            actualitzaCapcaleresComandes();
+        }
+
+        public void actualitzaCapcaleresComandes()
+        {
+            dataGrid_capcaleraComandes.ItemsSource = null;
+            dataGrid_capcaleraComandes.ItemsSource = controller.donemComandes();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -45,6 +54,13 @@ namespace WarehouseSentinel
         {
             ProducteWindow producteWindow = new ProducteWindow();
             producteWindow.Show();
+        }
+
+        private void btn_novaComanda_Click(object sender, RoutedEventArgs e)
+        {
+            ComandaWindow comandaWindow = new ComandaWindow(controller.getBaseContext(), new Models.comanda());
+            comandaWindow.ShowDialog();
+            actualitzaCapcaleresComandes();
         }
     }
 }

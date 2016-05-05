@@ -81,7 +81,7 @@ namespace WarehouseSentinel.Viwers.Clients
             client.codiPostal = textBox_CodiPostal.Text;
             client.pais = textBox_Pais.Text;
 
-            if (radioButton_estatActiu.IsChecked == true)
+            if (radioButton_estatActiu.IsEnabled == true)
                 client.actiu = true;
             else
                 client.actiu = false;
@@ -107,9 +107,9 @@ namespace WarehouseSentinel.Viwers.Clients
                 client.actiu = false;
 
             string retorna = controller.afegeix(client);
+            Close();
 
             MessageBox.Show(retorna, "Informació", MessageBoxButton.OK, MessageBoxImage.Information);
-            Close();
         }
 
         private void btn_afegirContacte_Click(object sender, RoutedEventArgs e)

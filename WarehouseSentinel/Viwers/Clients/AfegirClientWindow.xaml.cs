@@ -38,6 +38,11 @@ namespace WarehouseSentinel.Viwers.Clients
 
         private void afegirClientWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            if (mode == modeControllerClient.modificar)
+                textBox_CIF.IsEnabled = false;
+            else
+                btn_AplicarCanvisClient.Visibility = Visibility.Hidden;
+
             textBox_CIF.Text = client.CIF;
             textBox_EmpresaNom.Text = client.nom;
             textBox_Cognom.Text = client.cognom;
@@ -52,11 +57,11 @@ namespace WarehouseSentinel.Viwers.Clients
 
             switch (mode)
             {
-                case modeControllerClient.modificar:
+                case modeControllerClient.afegir:
                     btn_AfegirClient.Visibility = Visibility.Hidden;
                     break;
 
-                case modeControllerClient.afegir:
+                case modeControllerClient.modificar:
                     btn_AplicarCanvisClient.Visibility = Visibility.Hidden;
                     break;
             }
